@@ -28,8 +28,13 @@ const handleRemove = () => {
 
     <div class="extension-actions">
       <button class="remove-btn" @click="handleRemove">Remove</button>
-      <label class="toggle-switch">
-        <input type="checkbox" :checked="extension.isActive" @change="handleToggle" />
+      <label class="toggle-switch" :for="'toggle-' + extension.id">
+        <input
+          type="checkbox"
+          :id="'toggle-' + extension.id"
+          :checked="extension.isActive"
+          @change="handleToggle"
+        />
         <span class="slider round"></span>
       </label>
     </div>

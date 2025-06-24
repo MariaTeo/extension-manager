@@ -178,7 +178,7 @@ watch(
 
     <main class="main-content">
       <section class="controls-section">
-        <h2 class="section-title">Extensions List</h2>
+        <h1 class="section-title">Extensions List</h1>
         <div class="filter-buttons">
           <button
             :class="{ active: activeFilter === 'all' }"
