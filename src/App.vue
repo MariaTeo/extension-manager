@@ -16,22 +16,12 @@ const modalMessage = ref('')
 const modalConfirmText = ref('')
 const modalCancelText = ref('')
 const pendingActionType = ref<'toggle' | 'remove' | null>(null)
+const dataFetched = ref(false)
 
 const theme = ref<'light' | 'dark'>((localStorage.getItem('theme') as 'light' | 'dark') || 'light')
 
 const filteredExtensions = computed(() => {
   let result = extensions.value
-
-  // Search term filtering logic is removed
-  // if (searchTerm.value) {
-  //   const lowerCaseSearch = searchTerm.value.toLowerCase()
-  //   result = result.filter(
-  //     (ext) =>
-  //       ext.name.toLowerCase().includes(lowerCaseSearch) ||
-  //       ext.description.toLowerCase().includes(lowerCaseSearch),
-  //   )
-  // }
-
   if (activeFilter.value !== 'all') {
     result = result.filter((ext) =>
       activeFilter.value === 'active' ? ext.isActive : !ext.isActive,
@@ -52,9 +42,10 @@ const fetchExtensions = async () => {
     extensions.value = data || []
   } catch (error: any) {
     console.error('Error fetching extensions:', error.message)
+  } finally {
+    dataFetched.value = true
   }
 }
-
 const handleToggleActiveStatus = (id: string) => {
   const extension = extensions.value.find((ext) => ext.id === id)
   if (!extension) return
@@ -220,9 +211,6 @@ watch(
       </section>
 
       <section class="extension-list-section">
-        <div v-if="filteredExtensions.length === 0" class="no-extensions">
-          <p>No extensions found matching your criteria.</p>
-        </div>
         <div class="extension-grid">
           <ExtensionItem
             v-for="ext in filteredExtensions"
