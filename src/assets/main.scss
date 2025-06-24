@@ -1,0 +1,295 @@
+@use './styles/_variables.scss' as *;
+@use './styles/_mixins.scss' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: $font-family-noto-sans;
+  font-size: $font-size-body;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.card,
+.modal {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.controls-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: $font-family-noto-sans;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  &:focus-visible {
+    outline: 2px solid $color-red-500;
+    outline-offset: 2px;
+  }
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: $spacing-lg;
+
+  @include screen-md {
+    padding: $spacing-xxl 14rem;
+  }
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md;
+  margin-bottom: $spacing-xxl;
+  border-radius: 20px;
+
+  svg {
+    height: 24px;
+    width: auto;
+
+    @include screen-md {
+      height: 41px;
+    }
+  }
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: $spacing-lg;
+
+  @include screen-md {
+    font-size: 2rem;
+  }
+}
+
+.search-and-filter {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  @include screen-md {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+
+.filter-buttons {
+  display: flex;
+  gap: $spacing-xs;
+  width: 100%;
+  height: 40px;
+
+  @include screen-md {
+    width: auto;
+  }
+
+  .filter-btn {
+    padding: $spacing-xs $spacing-md;
+    border-radius: $border-radius-pill;
+    font-size: $font-size-body;
+    font-weight: 500;
+    flex: 1;
+
+    &.active {
+      background-color: $color-red-500 !important;
+      color: $color-neutral-0 !important;
+
+      &:hover {
+        background-color: $color-red-400 !important;
+      }
+    }
+  }
+}
+
+.no-extensions {
+  text-align: center;
+  padding: $spacing-xxl;
+}
+
+.extension-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-lg;
+
+  @include screen-md {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+
+  @include screen-lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+body.light-theme {
+  background: $gradient-light;
+  color: $text-light-primary;
+
+  .card {
+    background-color: $color-neutral-0;
+    box-shadow: $shadow-default;
+  }
+
+  .button-primary {
+    background-color: $color-red-500;
+    color: $color-neutral-0;
+    border-radius: $border-radius-pill;
+
+    &:hover {
+      background-color: $color-red-400;
+    }
+
+    &:active {
+      background-color: $color-red-700;
+    }
+  }
+
+  .button-secondary {
+    background-color: $color-neutral-100;
+    color: $color-neutral-900;
+    border-radius: $border-radius-pill;
+
+    &:hover {
+      background-color: $color-neutral-200;
+    }
+
+    &:active {
+      background-color: $color-neutral-300;
+      color: $color-neutral-900;
+    }
+  }
+
+  .modal {
+    background-color: $color-neutral-0;
+    color: $text-light-primary;
+  }
+
+  .theme-toggle-icon {
+    filter: none;
+  }
+
+
+  .app-header {
+    background-color: $color-neutral-0;
+    box-shadow: $shadow-default;
+    border-color: $color-neutral-100;
+
+    &:hover {
+      box-shadow: $shadow-hover;
+    }
+  }
+
+  .filter-buttons {
+    .filter-btn {
+      background-color: $color-neutral-100;
+      color: $color-neutral-600;
+
+      &:hover {
+        background-color: $color-neutral-200;
+      }
+    }
+  }
+
+  .no-extensions {
+    color: $text-light-secondary;
+  }
+}
+
+body.dark-theme {
+  background: $gradient-dark;
+  color: $text-dark-primary;
+
+  .card {
+    background-color: $color-neutral-700;
+    box-shadow: $shadow-default;
+  }
+
+  .button-primary {
+    background-color: $color-red-500;
+    color: $color-neutral-0;
+    border-radius: $border-radius-pill;
+
+    &:hover {
+      background-color: $color-red-400;
+    }
+
+    &:active {
+      background-color: $color-red-700;
+    }
+  }
+
+  .button-secondary {
+    background-color: $color-neutral-800;
+    color: $color-neutral-0;
+    border-radius: $border-radius-pill;
+
+    &:hover {
+      background-color: $color-neutral-900;
+      color: $color-neutral-0;
+    }
+
+    &:active {
+      background-color: $color-neutral-900;
+      color: $color-red-500;
+    }
+  }
+
+  .modal {
+    background-color: $color-neutral-700;
+    color: $text-dark-primary;
+  }
+
+  .theme-toggle-icon {
+    filter: invert(100%);
+  }
+
+
+  .app-header {
+    background-color: $color-neutral-800;
+    box-shadow: $shadow-default;
+    border-color: transparent;
+  }
+
+  .filter-buttons {
+    .filter-btn {
+      background-color: $color-neutral-800;
+      color: $color-neutral-200;
+
+      &:hover {
+        background-color: $color-neutral-900;
+      }
+    }
+  }
+
+  .no-extensions {
+    color: $text-dark-secondary;
+  }
+}
