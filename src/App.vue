@@ -58,6 +58,18 @@ const fetchExtensions = async () => {
 const handleToggleActiveStatus = (id: string) => {
   const extension = extensions.value.find((ext) => ext.id === id)
   if (!extension) return
+
+  modalActionExtensionId.value = id
+  pendingActionType.value = 'toggle'
+  modalTitle.value = extension.isActive
+    ? `Deactivate ${extension.name}?`
+    : `Activate ${extension.name}?`
+  modalMessage.value = extension.isActive
+    ? `Are you sure you want to deactivate "${extension.name}"?`
+    : `Are you sure you want to activate "${extension.name}"?`
+  modalConfirmText.value = extension.isActive ? 'Deactivate' : 'Activate'
+  modalCancelText.value = 'Cancel'
+  showConfirmModal.value = true
 }
 
 const handleRemoveExtension = (id: string) => {
@@ -181,6 +193,7 @@ watch(
         <h1 class="section-title">Extensions List</h1>
         <div class="filter-buttons">
           <button
+            type="button"
             :class="{ active: activeFilter === 'all' }"
             @click="activeFilter = 'all'"
             class="filter-btn"
@@ -188,6 +201,7 @@ watch(
             All
           </button>
           <button
+            type="button"
             :class="{ active: activeFilter === 'active' }"
             @click="activeFilter = 'active'"
             class="filter-btn"
@@ -195,6 +209,7 @@ watch(
             Active
           </button>
           <button
+            type="button"
             :class="{ active: activeFilter === 'inactive' }"
             @click="activeFilter = 'inactive'"
             class="filter-btn"

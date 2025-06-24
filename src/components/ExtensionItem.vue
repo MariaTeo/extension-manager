@@ -27,7 +27,7 @@ const handleRemove = () => {
     </div>
 
     <div class="extension-actions">
-      <button class="remove-btn" @click="handleRemove">Remove</button>
+      <button class="remove-btn" type="button" @click="handleRemove">Remove</button>
       <label class="toggle-switch" :for="'toggle-' + extension.id">
         <input
           type="checkbox"

@@ -12,6 +12,7 @@ const toggle = () => {
 
 <template>
   <button
+    type="button"
     class="theme-toggle-btn"
     :class="theme === 'light' ? 'light' : 'dark'"
     @click="toggle"

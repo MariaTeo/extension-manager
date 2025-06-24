@@ -23,8 +23,9 @@ const cancel = () => {
       <h3 class="modal-title">{{ title }}</h3>
       <p class="modal-message">{{ message }}</p>
       <div class="modal-actions">
-        <button class="cancel-btn" @click="cancel">{{ cancelText }}</button>
+        <button class="cancel-btn" type="button" @click="cancel">{{ cancelText }}</button>
         <button
+          type="button"
           :class="['confirm-btn', { 'confirm-remove': confirmText === 'Remove' }]"
           @click="confirm"
         >
