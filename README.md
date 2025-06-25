@@ -16,8 +16,8 @@ Users should be able to:
 
 ## Links
 
-* **Solution URL:** [Your Frontend Mentor Challenge submission URL here]
-* **Live Site URL:** [Your Netlify deployed app URL here]
+* **Solution URL:** [Frontend Mentor Challenge submission](https://www.frontendmentor.io/solutions/responsive-extension-manager-s97PDfI-6f)
+* **Live Site URL:** [Netlify deployed app](https://extension-manager-fe-mentor-challenge.netlify.app/)
 
 ## My process
 
