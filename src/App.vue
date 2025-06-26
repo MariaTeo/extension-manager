@@ -49,18 +49,6 @@ const fetchExtensions = async () => {
 const handleToggleActiveStatus = (id: string) => {
   const extension = extensions.value.find((ext) => ext.id === id)
   if (!extension) return
-
-  modalActionExtensionId.value = id
-  pendingActionType.value = 'toggle'
-  modalTitle.value = extension.isActive
-    ? `Deactivate ${extension.name}?`
-    : `Activate ${extension.name}?`
-  modalMessage.value = extension.isActive
-    ? `Are you sure you want to deactivate "${extension.name}"?`
-    : `Are you sure you want to activate "${extension.name}"?`
-  modalConfirmText.value = extension.isActive ? 'Deactivate' : 'Activate'
-  modalCancelText.value = 'Cancel'
-  showConfirmModal.value = true
 }
 
 const handleRemoveExtension = (id: string) => {
